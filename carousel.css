@@ -1,0 +1,269 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #ffffff;
+    color: #0f172a;
+    line-height: 1.6;
+}
+
+.container {
+    min-height: 100vh;
+    background-color: #ffffff;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 4rem 1rem;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(to right, #0f172a, rgba(15, 23, 42, 0.6));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    color: #64748b;
+    max-width: 32rem;
+    margin: 0 auto 3rem;
+}
+
+/* Carousel Section */
+.carousel-section {
+    padding: 0 1rem 4rem;
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.carousel-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(4px);
+    border: 1px solid #e2e8f0;
+    border-radius: 50%;
+    padding: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-nav-btn:hover {
+    background: #f1f5f9;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-nav-btn.prev {
+    left: 1rem;
+}
+
+.carousel-nav-btn.next {
+    right: 1rem;
+}
+
+.carousel-viewport {
+    overflow: hidden;
+    border-radius: 0.5rem;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    gap: 1.5rem;
+    padding: 2rem 1rem;
+}
+
+/* Card Styles */
+.card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s;
+    min-width: 300px;
+    max-width: 300px;
+    flex-shrink: 0;
+}
+
+.card:hover {
+    box-shadow: 0 25px 25px -5px rgba(0, 0, 0, 0.25);
+    transform: scale(1.05);
+}
+
+.card-image {
+    height: 12rem;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.2), rgba(15, 23, 42, 0.1));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-number {
+    width: 5rem;
+    height: 5rem;
+    background: rgba(15, 23, 42, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0f172a;
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #0f172a;
+}
+
+.card-description {
+    color: #64748b;
+    line-height: 1.6;
+}
+
+/* Indicators */
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+    gap: 0.5rem;
+}
+
+.indicator {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background: rgba(100, 116, 139, 0.3);
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+}
+
+.indicator.active {
+    background: #0f172a;
+    transform: scale(1.25);
+}
+
+.indicator:hover {
+    background: rgba(100, 116, 139, 0.5);
+}
+
+/* Progress Bar */
+.progress-container {
+    margin-top: 1rem;
+    max-width: 24rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.progress-bar {
+    height: 0.25rem;
+    background: #f1f5f9;
+    border-radius: 9999px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #0f172a;
+    transition: width 0.5s ease-out;
+    border-radius: 9999px;
+}
+
+/* Features Section */
+.features {
+    background: rgba(241, 245, 249, 0.3);
+    padding: 4rem 1rem;
+}
+
+.features-container {
+    max-width: 64rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 1.875rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: #0f172a;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.feature {
+    padding: 1.5rem;
+}
+
+.feature-icon {
+    width: 3rem;
+    height: 3rem;
+    background: rgba(15, 23, 42, 0.1);
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-size: 1.5rem;
+}
+
+.feature h3 {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #0f172a;
+}
+
+.feature p {
+    color: #64748b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .carousel-nav-btn {
+        display: none;
+    }
+
+    .card {
+        min-width: 280px;
+        max-width: 280px;
+    }
+}
