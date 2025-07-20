@@ -39,7 +39,17 @@ body {
     max-width: 32rem;
     margin: 0 auto 3rem;
 }
-
+/*equioe card*/
+.equipe-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 1rem;
+}
+.custom-size{
+    width: 5rem;
+    height: 5rem;
+}
 /* Carousel Section */
 .carousel-section {
     padding: 0 1rem 4rem;
