@@ -816,7 +816,7 @@
         }));
 
 
-        let currentIndex = 0;
+        let currentIndex = 1;
         let isAutoPlaying = true;
         let autoPlayInterval;
 
@@ -825,6 +825,19 @@
             const track = document.getElementById('carouselTrack');
             track.innerHTML = '';
 
+            const total = cardsData.length;
+
+            // Clone de la dernière image — ajoutée au début
+            const lastClone = document.createElement('div');
+            lastClone.className = 'card';
+            lastClone.innerHTML = `
+        <div class="card-image">
+            <img src="${cardsData[total - 1].imagePath}" alt="Clone Last" />
+        </div>
+    `;
+            track.appendChild(lastClone);
+
+            // Ajout des vraies cartes
             cardsData.forEach((card, index) => {
                 const cardElement = document.createElement('div');
                 cardElement.className = 'card';
@@ -835,7 +848,18 @@
         `;
                 track.appendChild(cardElement);
             });
+
+            // Clone de la première image — ajoutée à la fin
+            const firstClone = document.createElement('div');
+            firstClone.className = 'card';
+            firstClone.innerHTML = `
+        <div class="card-image">
+            <img src="${cardsData[0].imagePath}" alt="Clone First" />
+        </div>
+    `;
+            track.appendChild(firstClone);
         }
+
 
 
         // Generate indicators
@@ -843,44 +867,82 @@
             const indicatorsContainer = document.getElementById('indicators');
             indicatorsContainer.innerHTML = '';
 
-            const maxSlides = cardsData.length - 2;
-            for (let i = 0; i < maxSlides; i++) {
+            for (let i = 0; i < cardsData.length; i++) {
                 const indicator = document.createElement('button');
-                indicator.className = 'indicator'; if (i === currentIndex) indicator.classList.add('active');
+                indicator.className = 'indicator';
+                if (i === currentIndex) indicator.classList.add('active');
                 indicator.onclick = () => goToSlide(i);
                 indicatorsContainer.appendChild(indicator);
             }
         }
 
+
         // Update carousel position
-        function updateCarousel() {
+        function updateCarousel(jump = false) {
             const track = document.getElementById('carouselTrack');
-            const translateX = currentIndex * (300 + 24); // 300px card width + 24px gap
+            const card = track.querySelector('.card');
+            if (!card) return;
+
+            const cardWidth = card.offsetWidth + 24;
+            const translateX = currentIndex * cardWidth;
+
+            track.style.transition = jump ? 'none' : 'transform 0.5s ease';
             track.style.transform = `translateX(-${translateX}px)`;
 
-            // Update indicators
+            // Mise à jour des indicateurs et de la progress bar
+            const realIndex = (currentIndex - 1 + cardsData.length) % cardsData.length;
+
             document.querySelectorAll('.indicator').forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentIndex);
+                indicator.classList.toggle('active', index === realIndex);
             });
 
-            // Update progress bar
-            const maxSlides = cardsData.length - 2;
             const progressFill = document.getElementById('progressFill');
-            progressFill.style.width = `${((currentIndex + 1) / maxSlides) * 100}%`;
+            progressFill.style.width = `${((realIndex + 1) / cardsData.length) * 100}%`;
         }
+
+
 
         // Navigation functions
         function goToNext() {
-            const maxIndex = cardsData.length - 3;
-            currentIndex = currentIndex === maxIndex ? 0 : currentIndex + 1;
+            currentIndex++;
             updateCarousel();
+
+            if (currentIndex > cardsData.length) {
+                setTimeout(() => {
+                    currentIndex = 1;
+                    updateCarousel(true); // jump sans animation
+                }, 500);
+            }
         }
 
         function goToPrevious() {
-            const maxIndex = cardsData.length - 3;
-            currentIndex = currentIndex === 0 ? maxIndex : currentIndex - 1;
+            currentIndex--;
             updateCarousel();
+
+            if (currentIndex === 0) {
+                setTimeout(() => {
+                    currentIndex = cardsData.length;
+                    updateCarousel(true);
+                }, 500);
+            }
         }
+        function generateIndicators() {
+            const indicatorsContainer = document.getElementById('indicators');
+            indicatorsContainer.innerHTML = '';
+
+            for (let i = 0; i < cardsData.length; i++) {
+                const indicator = document.createElement('button');
+                indicator.className = 'indicator';
+                if (i === 0) indicator.classList.add('active');
+                indicator.onclick = () => {
+                    currentIndex = i + 1;
+                    updateCarousel();
+                };
+                indicatorsContainer.appendChild(indicator);
+            }
+        }
+
+
 
         function goToSlide(index) {
             currentIndex = index;
@@ -917,10 +979,11 @@
         function initCarousel() {
             generateCards();
             generateIndicators();
-            updateCarousel();
+            updateCarousel(true); 
             setupEventListeners();
             startAutoPlay();
         }
+
 
         // Start when page loads
         document.addEventListener('DOMContentLoaded', initCarousel);

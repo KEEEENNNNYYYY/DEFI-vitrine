@@ -1,1 +1,1 @@
-# DEFI-vitrine
+# DEFI
