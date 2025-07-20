@@ -47,8 +47,8 @@ body {
     gap: 1rem;
 }
 .custom-size{
-    width: 5rem;
-    height: 5rem;
+    width: 25%;
+    height: 100%;
 }
 /* Carousel Section */
 .carousel-section {
