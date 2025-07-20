@@ -19,7 +19,7 @@ body {
 /* Hero Section */
 .hero {
     text-align: center;
-    padding: 4rem 1rem;
+    /* padding: 4rem 1rem; */
 }
 
 .hero h1 {
@@ -141,12 +141,12 @@ body {
 }
 
 .card:hover {
-    box-shadow: 0 25px 25px -5px rgba(0, 0, 0, 0.25);
+    /* box-shadow: 0 25px 25px -5px rgba(0, 0, 0, 0.25); */
     transform: scale(1.05);
 }
 
 .card-image {
-    height: 12rem;
+    height: 100%;
     background: linear-gradient(135deg, rgba(15, 23, 42, 0.2), rgba(15, 23, 42, 0.1));
     display: flex;
     align-items: center;

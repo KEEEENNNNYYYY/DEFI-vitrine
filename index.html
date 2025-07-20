@@ -811,40 +811,10 @@
         });
 
 
-        const cardsData = [
-            {
-                title: "Creative Design",
-                description: "Innovative design solutions that capture attention and deliver exceptional user experiences."
-            },
-            {
-                title: "Development",
-                description: "Cutting-edge development practices using the latest technologies and frameworks."
-            },
-            {
-                title: "Strategy",
-                description: "Strategic planning and execution to help your business reach its full potential."
-            },
-            {
-                title: "Analytics",
-                description: "Data-driven insights to optimize performance and make informed decisions."
-            },
-            {
-                title: "Marketing",
-                description: "Comprehensive marketing solutions to boost your brand visibility and engagement."
-            },
-            {
-                title: "Support",
-                description: "24/7 customer support to ensure your success and satisfaction."
-            },
-            {
-                title: "Innovation",
-                description: "Pushing boundaries with innovative solutions and forward-thinking approaches."
-            },
-            {
-                title: "Excellence",
-                description: "Commitment to excellence in every project and client relationship."
-            }
-        ];
+        const cardsData = Array.from({ length: 8 }, (_, i) => ({
+            imagePath: `assets/pic${i + 1}.png`
+        }));
+
 
         let currentIndex = 0;
         let isAutoPlaying = true;
@@ -859,17 +829,14 @@
                 const cardElement = document.createElement('div');
                 cardElement.className = 'card';
                 cardElement.innerHTML = `
-    <div class="card-image">
-        <div class="card-number">${index + 1}</div>
-    </div>
-    <div class="card-content">
-        <h3 class="card-title">${card.title}</h3>
-        <p class="card-description">${card.description}</p>
-    </div>
-    `;
+            <div class="card-image">
+                <img src="${card.imagePath}" alt="Image ${index + 1}" />
+            </div>
+        `;
                 track.appendChild(cardElement);
             });
         }
+
 
         // Generate indicators
         function generateIndicators() {
